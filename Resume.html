@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khoza Mabatho - Resume</title>
+    <!-- Inter Font for clean, modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Reset & Variables */
+        :root {
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --accent-color: #2563eb;
+            --bg-page: #f3f4f6;
+            --bg-paper: #ffffff;
+            --border-color: #e5e7eb;
+            --sidebar-bg: #f9fafb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* A4 Paper Sizing & Single Page Layout */
+        .resume-paper {
+            width: 100%;
+            max-width: 800px; /* Fits standard letter/A4 proportions nicely */
+            background-color: var(--bg-paper);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: grid;
+            grid-template-columns: 240px 1fr; /* Sidebar + Main Content */
+        }
+
+        /* Sidebar (Left Column) */
+        aside {
+            background-color: var(--sidebar-bg);
+            padding: 2.5rem 1.5rem;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem auto;
+            display: block;
+            border: 3px solid var(--bg-paper);
+            box-shadow: 0 0 0 1px var(--border-color);
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        h3 {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Contact & Lists in Sidebar */
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            font-size: 0.8rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+
+        .contact-list li a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-list li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Skills List */
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            font-size: 0.8rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .skill-list li span {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+
+        /* Education in Sidebar */
+        .education-item {
+            margin-bottom: 1rem;
+        }
+
+        .education-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .education-degree {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .education-school {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .education-year {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* Main Content (Right Column) */
+        main {
+            padding: 2.5rem 2rem;
+        }
+
+        /* Header Section */
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--text-main);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* Main Sections (Experience & Projects) */
+        .main-section {
+            margin-bottom: 2rem;
+        }
+
+        .main-section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+        }
+
+        /* Experience Timeline */
+        .experience-item {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .exp-role {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .exp-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .exp-company {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .exp-description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .exp-description ul {
+            list-style-type: disc;
+            padding-left: 1.2rem;
+            margin-top: 0.25rem;
+        }
+
+        .exp-description ul li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .project-card h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-stack {
+            font-size: 0.7rem;
+            color: var(--accent-color);
+            background-color: #eff6ff;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        /* =========================================
+           RESPONSIVE LAYOUT ENHANCEMENTS 
+        ========================================= */
+
+        /* Tablet & Small Desktop */
+        @media (max-width: 900px) {
+            .resume-paper {
+                grid-template-columns: 220px 1fr; /* Slightly narrower sidebar */
+            }
+            main {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Mobile Devices */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem; /* Reduce outer body padding */
+            }
+
+            .resume-paper {
+                grid-template-columns: 1fr; /* Stack columns vertically */
+            }
+            
+            aside {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 2rem 1.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center the sidebar contents on mobile */
+                text-align: center;
+            }
+
+            /* Make lists inside sidebar full width and left-aligned for readability */
+            .sidebar-section {
+                width: 100%;
+                max-width: 400px;
+                text-align: left;
+            }
+
+            main {
+                padding: 2rem 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr; /* Stack project cards */
+            }
+        }
+
+        /* Very Small Mobile Devices */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem; /* Slightly smaller name */
+            }
+            
+            .job-title {
+                font-size: 1rem;
+            }
+
+            main, aside {
+                padding: 1.5rem 1.25rem; /* Tighter padding */
+            }
+
+            /* Stack the job role and date vertically */
+            .exp-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.2rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .resume-paper {
+                box-shadow: none;
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                grid-template-columns: 240px 1fr; /* Force columns for print */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-paper">
+        
+        <!-- LEFT SIDEBAR: Contact, Skills, Education -->
+        <aside>
+            <img src="https://picsum.photos/seed/khozamabatho/120/120.jpg" alt="Khoza Mabatho" class="profile-img">
+            
+            <!-- CONTACT -->
+            <section class="sidebar-section">
+                <h3>Contact</h3>
+                <ul class="contact-list">
+                    <li>South Africa</li>
+                    <li><a href="mailto:mabathoanastacia@gmail.com">mabathoanastacia@gmail.com</a></li>
+                    <li><a href="tel:+27123456789">+27 12 345 6789</a></li>
+                    <li><a href="#">linkedin.com/in/khozamabatho</a></li>
+                    <li><a href="#">github.com/khozamabatho</a></li>
+                </ul>
+            </section>
+
+            <!-- SKILLS -->
+            <section class="sidebar-section">
+                <h3>Skills</h3>
+                <ul class="skill-list">
+                    <li>JavaScript (ES6+) <span>Expert</span></li>
+                    <li>React & Next.js <span>Expert</span></li>
+                    <li>Node.js & Express <span>Advanced</span></li>
+                    <li>Python & Django <span>Advanced</span></li>
+                    <li>PostgreSQL <span>Intermediate</span></li>
+                    <li>Docker & CI/CD <span>Intermediate</span></li>
+                </ul>
+            </section>
+
+            <!-- EDUCATION -->
+            <section class="sidebar-section">
+                <h3>Education</h3>
+                <div class="education-item">
+                    <div class="education-degree">B.Tech Information Technology</div>
+                    <div class="education-school">Tshwane University of Technology (TUT)</div>
+                    <div class="education-year">2015 - 2019</div>
+                </div>
+                <div class="education-item">
+                    <div class="education-degree">National Diploma IT</div>
+                    <div class="education-school">Tshwane University of Technology (TUT)</div>
+                    <div class="education-year">2012 - 2015</div>
+                </div>
+            </section>
+        </aside>
+
+        <!-- RIGHT MAIN CONTENT: Profile, Experience, Projects -->
+        <main>
+            <!-- HEADER -->
+            <header>
+                <h1>Khoza Mabatho</h1>
+                <p class="job-title">Senior Full Stack Developer</p>
+            </header>
+
+            <!-- EXPERIENCE -->
+            <section class="main-section">
+                <h2>Work Experience</h2>
+                
+                <article class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Senior Full Stack Developer</span>
+                        <span class="exp-date">2021 - Present</span>
+                    </div>
+                    <div class="exp-company">Tech Innovators Inc.</div>
+                    <div class="exp-description">
+                        Led end-to-end development of a cloud-native SaaS platform serving 50,000+ users.
+                        <ul>
+                            <li>Architected microservices with Node.js, cutting server costs by 30%.</li>
+                            <li>Built responsive front-ends with React, improving user retention by 25%.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Full Stack Developer</span>
+                        <span class="exp-date">2019 - 2021</span>
+                    </div>
+                    <div class="exp-company">Digital Solutions Co.</div>
+                    <div class="exp-description">
+                        Developed enterprise web applications for high-profile clients.
+                        <ul>
+                            <li>Designed RESTful APIs handling millions of requests with 99.9% uptime.</li>
+                            <li>Optimized PostgreSQL queries, improving app response time by 40%.</li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
+
+            <!-- PROJECTS -->
+            <section class="main-section">
+                <h2>Key Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <h4>NovaCommerce</h4>
+                        <p>Open-source headless e-commerce platform with Stripe integration.</p>
+                        <span class="tech-stack">Next.js, GraphQL, Stripe</span>
+                    </article>
+                    <article class="project-card">
+                        <h4>DataPulse Analytics</h4>
+                        <p>Real-time dashboard for IoT sensor data visualization.</p>
+                        <span class="tech-stack">React, D3.js, WebSocket</span>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
